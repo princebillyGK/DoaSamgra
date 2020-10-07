@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Doa Samagra</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dial_description">General Compass Dial</string>
+    <string name="arrow_description">Qibla Directing Arrow</string>
+    <!-- Error Messages -->
+    <string name="compass_sensor_null_error">No Sensor Found!</string>
 </resources>

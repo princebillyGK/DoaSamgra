@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/compassConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".compass.CompassFragment">
+
+        <ImageView
+            android:id="@+id/dial"
+            android:layout_width="183dp"
+            android:layout_height="183dp"
+            android:contentDescription="@string/dial_description"
+            app:layout_constraintBottom_toTopOf="@+id/compass_message"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/dial" />
+
+        <TextView
+            android:id="@+id/compass_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NW 0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/dial"
+            app:layout_constraintStart_toStartOf="@+id/dial"
+            app:layout_constraintTop_toBottomOf="@+id/dial"
+            tools:text="NW 0" />
+
+        <ImageView
+            android:id="@+id/qibla_arrow"
+            android:layout_width="330dp"
+            android:layout_height="330dp"
+            app:layout_constraintBottom_toBottomOf="@+id/dial"
+            app:layout_constraintEnd_toEndOf="@+id/dial"
+            app:layout_constraintStart_toStartOf="@+id/dial"
+            app:layout_constraintTop_toTopOf="@+id/dial"
+            app:srcCompat="@drawable/qibla_arrow" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
