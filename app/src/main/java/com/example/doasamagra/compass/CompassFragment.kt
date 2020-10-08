@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.doasamagra.R
 import com.example.doasamagra.databinding.FragmentCompassBinding
+import kotlin.math.PI
 
 class CompassFragment : Fragment(), SensorEventListener {
     private lateinit var binding: FragmentCompassBinding
@@ -21,8 +22,8 @@ class CompassFragment : Fragment(), SensorEventListener {
     private lateinit var accelerometer: Sensor
     private lateinit var magnetometer: Sensor
 
-    private lateinit var accelerometerData: FloatArray
-    private lateinit var magnetometerData: FloatArray
+    private var accelerometerData = FloatArray(3)
+    private var magnetometerData = FloatArray(3)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,8 +53,8 @@ class CompassFragment : Fragment(), SensorEventListener {
     override fun onResume() {
         super.onResume()
         if (::accelerometer.isInitialized and ::magnetometer.isInitialized) {
-            sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL)
-            sensorManager.registerListener(this, magnetometer, SensorManager.SENSOR_DELAY_NORMAL)
+            sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_UI)
+            sensorManager.registerListener(this, magnetometer, SensorManager.SENSOR_DELAY_UI)
         }
     }
 
@@ -63,7 +64,6 @@ class CompassFragment : Fragment(), SensorEventListener {
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-        TODO("Not yet implemented")
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
@@ -86,7 +86,6 @@ class CompassFragment : Fragment(), SensorEventListener {
             SensorManager.getOrientation(rotationMatrix, orientationValue)
         }
         val (azimuth, pitch, roll) = orientationValue
-
-        binding.compassMessage.text = "Azimuth: $azimuth, Pitch $pitch, Roll, $roll"
+        binding.dial.rotation = -azimuth * 180 / PI.toFloat()
     }
 }

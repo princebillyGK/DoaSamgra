@@ -6,4 +6,6 @@
     <string name="arrow_description">Qibla Directing Arrow</string>
     <!-- Error Messages -->
     <string name="compass_sensor_null_error">No Sensor Found!</string>
+    <string name="dial_image_view">A compass dial with north, south, west and east indicated</string>
+    <string name="qilba_arrow">A arrow represents the Mecca location</string>
 </resources>
