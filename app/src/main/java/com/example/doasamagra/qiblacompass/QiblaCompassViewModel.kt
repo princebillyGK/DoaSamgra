@@ -16,10 +16,12 @@ object KaabaLocation : Location("") {
     }
 }
 
-class QiblaCompassViewModel(private val location: Location) : ViewModel() {
+class QiblaCompassViewModel() : ViewModel() {
     private var accelerometerData = FloatArray(3)
     private var magnetometerData = FloatArray(3)
     private val _dialRotation = MutableLiveData<Float>(0f)
+    private var location = Location("")
+
     val dialRotation:LiveData<Float>
         get() = _dialRotation
     private val _qiblaArrowRotation = MutableLiveData<Float>(0f)
@@ -28,6 +30,10 @@ class QiblaCompassViewModel(private val location: Location) : ViewModel() {
 
     init {
 
+    }
+
+    fun setLocation(newLocation: Location) {
+        location = newLocation
     }
 
     fun listenSensorChange(event: SensorEvent?) {
