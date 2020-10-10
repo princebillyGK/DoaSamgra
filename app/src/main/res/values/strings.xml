@@ -1,11 +1,18 @@
 <resources>
     <string name="app_name">Doa Samagra</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="dial_description">General Compass Dial</string>
-    <string name="arrow_description">Qibla Directing Arrow</string>
-    <!-- Error Messages -->
-    <string name="compass_sensor_null_error">No Sensor Found!</string>
+
+
+    <!-- image description -->
     <string name="dial_image_view">A compass dial with north, south, west and east indicated</string>
-    <string name="qilba_arrow">A arrow represents the Mecca location</string>
+    <string name="qibla_arrow">A arrow represents the Mecca location</string>
+
+    <!-- Other -->
+    <string name="gps_warning">Enable GPS to use Qibla Compass</string>
+    <string name="try_again">Try Again</string>
+
+    <!-- Error Messages -->
+    <string name="compass_unavailable_text">The Qibla Compass feature is not available for this device</string>
+    <string name="gps_permission_disabled_text">Please go to settings and give gps access to use Qibla Compass</string>
+    <string name="gps_loading">Getting Location data...</string>
 </resources>
