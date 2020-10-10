@@ -4,6 +4,7 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorManager
 import android.location.Location
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlin.math.PI
@@ -18,8 +19,12 @@ object KaabaLocation : Location("") {
 class QiblaCompassViewModel(private val location: Location) : ViewModel() {
     private var accelerometerData = FloatArray(3)
     private var magnetometerData = FloatArray(3)
-    val dialRotation = MutableLiveData<Float>(0f)
-    val qiblaArrowRotation = MutableLiveData<Float>(0f)
+    private val _dialRotation = MutableLiveData<Float>(0f)
+    val dialRotation:LiveData<Float>
+        get() = _dialRotation
+    private val _qiblaArrowRotation = MutableLiveData<Float>(0f)
+    val qiblaArrowRotation: LiveData<Float>
+        get() = _qiblaArrowRotation
 
     init {
 
@@ -44,7 +49,7 @@ class QiblaCompassViewModel(private val location: Location) : ViewModel() {
         }
         val (azimuth, pitch, roll) = orientationValue
         val compassRotation = -azimuth * 180 / PI.toFloat()
-        dialRotation.value = compassRotation
-        qiblaArrowRotation.value = compassRotation + location.bearingTo(KaabaLocation)
+        _dialRotation.value = compassRotation
+        _qiblaArrowRotation.value = compassRotation + location.bearingTo(KaabaLocation)
     }
 }
