@@ -15,4 +15,10 @@
     <string name="compass_unavailable_text">The Qibla Compass feature is not available for this device</string>
     <string name="gps_permission_disabled_text">Please go to settings and give gps access to use Qibla Compass</string>
     <string name="gps_loading">Getting Location data...</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="qbla_menu_title">কিবলা</string>
+    <string name="hadis_menu_title">হাদিস</string>
+    <string name="doa_menu_title">দোয়া</string>
+    <string name="surah_menu_title">সুরা</string>
 </resources>

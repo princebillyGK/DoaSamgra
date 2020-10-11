@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+
+
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/qiblaCompass"
+        android:enabled="true"
+        android:icon="@drawable/qibla"
+        android:title="@string/qbla_menu_title" />
+    <item
+        android:id="@+id/hadis"
+        android:enabled="true"
+        android:icon="@drawable/hadis"
+        android:title="@string/hadis_menu_title" />
+    <item
+        android:id="@+id/doa"
+        android:enabled="true"
+        android:icon="@drawable/doa"
+        android:title="@string/doa_menu_title" />
+    <item
+        android:id="@+id/surahPlayer"
+        android:enabled="true"
+        android:icon="@drawable/surah"
+        android:title="@string/surah_menu_title" />
+</menu>

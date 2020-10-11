@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_navigation"
+    app:startDestination="@id/qiblaCompass">
+
+    <fragment
+        android:id="@+id/doa"
+        android:name="com.example.doasamagra.doa.DoaFragment"
+        android:label="doa_fragment"
+        tools:layout="@layout/doa_fragment" />
+    <fragment
+        android:id="@+id/qiblaCompass"
+        android:name="com.example.doasamagra.qiblacompass.QiblaCompassFragment"
+        android:label="QiblaCompassFragment" />
+    <fragment
+        android:id="@+id/hadis"
+        android:name="com.example.doasamagra.hadis.HadisFragment"
+        android:label="hadis_fragment"
+        tools:layout="@layout/hadis_fragment" />
+    <fragment
+        android:id="@+id/surahPlayer"
+        android:name="com.example.doasamagra.surahplayer.SurahPlayerFragment"
+        android:label="surah_player_fragment"
+        tools:layout="@layout/surah_player_fragment" />
+</navigation>
