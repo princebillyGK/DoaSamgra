@@ -46,10 +46,10 @@ class QiblaCompassFragment : Fragment(), SensorEventListener, LocationListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity!!)
-        locationManger = activity!!.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        sensorManager = activity!!.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        locationManger = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        sensorManager = requireActivity().getSystemService(Context.SENSOR_SERVICE) as SensorManager
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
         magnetometer = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)
         getLocation()
@@ -81,12 +81,12 @@ class QiblaCompassFragment : Fragment(), SensorEventListener, LocationListener {
 
     private fun getLocation() {
         if (ActivityCompat.checkSelfPermission(
-                this.activity!!,
+                this.requireActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             ActivityCompat.requestPermissions(
-                this.activity!!,
+                this.requireActivity(),
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                 REQUEST_LOCATION_PERMISSION
             )
@@ -105,7 +105,7 @@ class QiblaCompassFragment : Fragment(), SensorEventListener, LocationListener {
                         this
                     )
                 } else {
-                    Toast.makeText(activity!!, "GPS is turned off", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(), "GPS is turned off", Toast.LENGTH_SHORT).show()
                     binding.tryAgain.setOnClickListener {
                         getLocation()
                         binding.gpsEnableOption.visibility = View.GONE
