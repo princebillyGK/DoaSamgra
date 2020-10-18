@@ -46,7 +46,6 @@ class QiblaCompassFragment : Fragment(), SensorEventListener, LocationListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         locationManger = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
         sensorManager = requireActivity().getSystemService(Context.SENSOR_SERVICE) as SensorManager

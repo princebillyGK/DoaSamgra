@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.example.doasamagra.R
 import com.example.doasamagra.databinding.SurahPlayerFragmentBinding
+import kotlinx.android.synthetic.main.surah_player_fragment.*
 
 class SurahPlayerFragment : Fragment() {
 
@@ -19,7 +20,6 @@ class SurahPlayerFragment : Fragment() {
     }
 
     private lateinit var viewModel: SurahPlayerViewModel
-    private lateinit var surahListAdapter: SurahItemAdapter
     private lateinit var binding: SurahPlayerFragmentBinding
     private lateinit var surahItemAdapter: SurahItemAdapter
 
@@ -32,6 +32,13 @@ class SurahPlayerFragment : Fragment() {
         surahItemAdapter = SurahItemAdapter()
         surahItemAdapter.data = listOf<Surah>()
         binding.surahList.adapter =  surahItemAdapter
+        surahItemAdapter.setOnItemClickListener(object: SurahItemAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                viewModel.jcAudioList.value?.get(position)?.let { binding.jcplayer.playAudio(it) }
+                binding.jcplayer.visibility = View.VISIBLE
+                binding.jcplayer.createNotification()
+            }
+        })
         return binding.root
     }
 
@@ -45,7 +52,7 @@ class SurahPlayerFragment : Fragment() {
         })
         viewModel.jcAudioList.observe(viewLifecycleOwner, Observer{
             it?.let {
-                binding.jcplayer.initAnonPlaylist(it)
+                binding.jcplayer.initPlaylist(it, null)
             }
         })
         viewModel.loadData()

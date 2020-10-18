@@ -22,9 +22,17 @@
             android:layout_height="0dp" />
 
         <com.example.jean.jcplayer.view.JcPlayerView
-            android:id="@+id/jcplayer"
-            android:layout_width="match_parent"
             android:visibility="gone"
+            android:id="@+id/jcplayer"
+            app:next_icon_color="@color/secondaryDarkColor"
+            app:pause_icon_color="@color/secondaryDarkColor"
+            app:play_icon_color="@color/secondaryDarkColor"
+            app:previous_icon_color="@color/secondaryDarkColor"
+            app:progress_color="@color/secondaryDarkColor"
+            app:random_icon_color="@color/secondaryDarkColor"
+            app:repeat_icon_color="@color/secondaryDarkColor"
+            app:seek_bar_color="@color/secondaryDarkColor"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 </layout>

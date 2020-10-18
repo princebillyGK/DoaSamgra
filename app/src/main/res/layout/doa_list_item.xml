@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:padding="16dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/doa_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            tools:text="হালাল রিযিক বৃদ্ধির আমল" />
+
+        <TextView
+            android:id="@+id/doa_pron_in_bn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:textAlignment="textEnd"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="আল্লাহু লাতিফুম্ বি-ইবাদিহি ইয়ারজুকু মাইয়্যাশায়ু, ওয়া হুয়াল কাভিয়্যুল আজিজ" />
+
+        <TextView
+            android:id="@+id/doa_bn"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            tools:text="আল্লাহ তাঁর বান্দাদের প্রতি দয়ালু। তিনি যাকে ইচ্ছা, রিযিক দান করেন। তিনি প্রবল, পরাক্রমশালী (সুরা শুরা : আয়াত ১৯)" />
+
+        <TextView
+            android:id="@+id/doa_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/primaryLightColor"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:text="যে বা যারা প্রতিদিন সকালে নিয়ম করে, একনিষ্ঠতার সঙ্গে ৭০ বার এ আয়াত পড়বে, সে সর্বদা রিজিকের সংকট থেকে পরিত্রাণ লাভ করবে" />
+
+    </LinearLayout>
+
+
+</com.google.android.material.card.MaterialCardView>
