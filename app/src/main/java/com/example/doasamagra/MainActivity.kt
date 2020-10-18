@@ -1,58 +1,47 @@
 package com.example.doasamagra
 
+import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.example.doasamagra.databinding.ActivityMainBinding
+import com.example.doasamagra.util.OnSwipeTouchListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var binding: ActivityMainBinding
+
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        bottomNavigationView = findViewById(R.id.bottom_navigation)
-        navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.jcPlayer.setOnTouchListener(object : OnSwipeTouchListener(this) {
+            override fun onSwipeLeft() {
+                killJcPlayer()
+            }
+            override fun onSwipeRight() {
+                killJcPlayer()
+            }
+        })
+        navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         setUpNavigation()
     }
 
-    private fun setUpNavigation() {
-        NavigationUI.setupWithNavController(bottomNavigationView, navHostFragment.navController)
+    private fun killJcPlayer() {
+        binding.jcPlayer.kill()
+        binding.jcPlayerHolder.visibility = View.GONE
     }
 
-//    private fun setBottomNavigationListeners() {
-//        bottomNavigationView.setOnNavigationItemSelectedListener {
-//            when (it.itemId) {
-//                R.id.qiblaCompass-> {
-//                    supportActionBar?.title = getString(R.string.qbla_menu_title)
-//                    navController.navigate(R.id.qiblaCompassFragment)
-//                    true
-//                }
-//                R.id.hadis-> {
-//                    supportActionBar?.title = getString(R.string.hadis_menu_title)
-//                    navController.navigate(R.id.hadisFragment)
-//                    true
-//                }
-//                R.id.doa-> {
-//                    supportActionBar?.title = getString(R.string.doa_menu_title)
-//                    navController.navigate(R.id.doaFragment)
-//                    true
-//                }
-//                R.id.surahPlayer-> {
-//                    supportActionBar?.title = getString(R.string.surah_menu_title)
-//                    navController.navigate(R.id.surahPlayerFragment)
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
-//    }
+    private fun setUpNavigation() {
+        NavigationUI.setupWithNavController(binding.bottomNavigation, navHostFragment.navController)
+    }
 
 }

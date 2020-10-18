@@ -4,14 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.RecyclerView
 import com.example.doasamagra.R
 import com.example.doasamagra.databinding.SurahPlayerFragmentBinding
-import kotlinx.android.synthetic.main.surah_player_fragment.*
+import com.example.jean.jcplayer.view.JcPlayerView
 
 class SurahPlayerFragment : Fragment() {
 
@@ -22,6 +22,8 @@ class SurahPlayerFragment : Fragment() {
     private lateinit var viewModel: SurahPlayerViewModel
     private lateinit var binding: SurahPlayerFragmentBinding
     private lateinit var surahItemAdapter: SurahItemAdapter
+    private lateinit var jcPlayer: JcPlayerView
+    private lateinit var jcPlayerHolder: LinearLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,12 +33,14 @@ class SurahPlayerFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.surah_player_fragment, container, false)
         surahItemAdapter = SurahItemAdapter()
         surahItemAdapter.data = listOf<Surah>()
-        binding.surahList.adapter =  surahItemAdapter
-        surahItemAdapter.setOnItemClickListener(object: SurahItemAdapter.OnItemClickListener {
+        binding.surahList.adapter = surahItemAdapter
+        jcPlayer = requireActivity().findViewById(R.id.jc_player)
+        jcPlayerHolder = requireActivity().findViewById(R.id.jc_player_holder)
+
+        surahItemAdapter.setOnItemClickListener(object : SurahItemAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
-                viewModel.jcAudioList.value?.get(position)?.let { binding.jcplayer.playAudio(it) }
-                binding.jcplayer.visibility = View.VISIBLE
-                binding.jcplayer.createNotification()
+                viewModel.jcAudioList.value?.get(position)?.let { jcPlayer.playAudio(it) }
+                jcPlayerHolder.visibility = View.VISIBLE
             }
         })
         return binding.root
@@ -50,9 +54,9 @@ class SurahPlayerFragment : Fragment() {
                 surahItemAdapter.data = it
             }
         })
-        viewModel.jcAudioList.observe(viewLifecycleOwner, Observer{
+        viewModel.jcAudioList.observe(viewLifecycleOwner, Observer {
             it?.let {
-                binding.jcplayer.initPlaylist(it, null)
+                jcPlayer.initPlaylist(it, null)
             }
         })
         viewModel.loadData()

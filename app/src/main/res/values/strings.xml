@@ -21,4 +21,5 @@
     <string name="hadis_menu_title">হাদিস</string>
     <string name="doa_menu_title">দোয়া</string>
     <string name="surah_menu_title">সুরা</string>
+    <string name="jc_player_close_message"><![CDATA[< Swipe to close the player >]]></string>
 </resources>
