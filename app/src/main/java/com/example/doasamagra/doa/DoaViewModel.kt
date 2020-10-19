@@ -11,12 +11,14 @@ class DoaViewModel : ViewModel() {
     private val _doa = MutableLiveData<List<Doa>>()
     val doa: LiveData<List<Doa>> = _doa
 
-    fun loadData() {
+    fun loadData(cb: (() -> Unit)? = null) {
         doaCollection.orderBy("title").get()
             .addOnSuccessListener { documents ->
                 _doa.value = documents.toObjects(Doa::class.java)
+                cb?.let {it()}
             }.addOnFailureListener { e ->
                 Log.d("DoaViewModel", "There is some problems loading the data")
+                cb?.let {it()}
             }
     }
 }

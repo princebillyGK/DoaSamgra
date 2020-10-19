@@ -31,6 +31,9 @@ class HadisFragment : Fragment() {
         hadisItemAdapter = HadisItemAdapter()
         hadisItemAdapter.data = listOf<Hadis>()
         binding.hadisList.adapter = hadisItemAdapter
+        binding.hadisSwipeRefresh.setOnRefreshListener {
+            loadData()
+        }
         return binding.root
     }
 
@@ -42,6 +45,13 @@ class HadisFragment : Fragment() {
                 hadisItemAdapter.data = it
             }
         })
-        viewModel.loadData()
+        loadData()
+    }
+
+    private fun loadData() {
+        if (!binding.hadisSwipeRefresh.isRefreshing) binding.hadisSwipeRefresh.isRefreshing = true
+        viewModel.loadData {
+            binding.hadisSwipeRefresh.isRefreshing = false
+        }
     }
 }

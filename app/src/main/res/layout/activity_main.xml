@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -8,8 +9,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
 
         <androidx.fragment.app.FragmentContainerView
@@ -22,30 +23,31 @@
             app:navGraph="@navigation/bottom_navigation" />
 
         <LinearLayout
-            android:visibility="gone"
-            android:layout_width="match_parent"
             android:id="@+id/jc_player_holder"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
-        <com.example.jean.jcplayer.view.JcPlayerView
-            android:id="@+id/jc_player"
-            app:next_icon_color="@color/secondaryDarkColor"
-            app:pause_icon_color="@color/secondaryDarkColor"
-            app:play_icon_color="@color/secondaryDarkColor"
-            app:previous_icon_color="@color/secondaryDarkColor"
-            app:progress_color="@color/secondaryDarkColor"
-            app:random_icon_color="@color/secondaryDarkColor"
-            app:repeat_icon_color="@color/secondaryDarkColor"
-            app:seek_bar_color="@color/secondaryDarkColor"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <com.example.jean.jcplayer.view.JcPlayerView
+                android:id="@+id/jc_player"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:next_icon_color="@color/secondaryDarkColor"
+                app:pause_icon_color="@color/secondaryDarkColor"
+                app:play_icon_color="@color/secondaryDarkColor"
+                app:previous_icon_color="@color/secondaryDarkColor"
+                app:progress_color="@color/secondaryDarkColor"
+                app:random_icon_color="@color/secondaryDarkColor"
+                app:repeat_icon_color="@color/secondaryDarkColor"
+                app:seek_bar_color="@color/secondaryDarkColor" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="3dp"
                 android:text="@string/jc_player_close_message"
                 android:textAlignment="center"
-                android:paddingBottom="3dp"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -54,6 +56,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:menu="@menu/bottom_navigation_menu" />
+
+        <!--  ads:adUnitId="@string/banner_ad_unit_id"-->
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/test_banner_ad_unit_id" />
 
     </LinearLayout>
 </layout>

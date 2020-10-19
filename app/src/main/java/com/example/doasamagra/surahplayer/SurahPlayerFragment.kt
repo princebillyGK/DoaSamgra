@@ -34,6 +34,9 @@ class SurahPlayerFragment : Fragment() {
         surahItemAdapter = SurahItemAdapter()
         surahItemAdapter.data = listOf<Surah>()
         binding.surahList.adapter = surahItemAdapter
+        binding.surahSwipeRefresh.setOnRefreshListener {
+            loadData()
+        }
         jcPlayer = requireActivity().findViewById(R.id.jc_player)
         jcPlayerHolder = requireActivity().findViewById(R.id.jc_player_holder)
 
@@ -59,7 +62,14 @@ class SurahPlayerFragment : Fragment() {
                 jcPlayer.initPlaylist(it, null)
             }
         })
-        viewModel.loadData()
+        loadData()
+    }
+
+    private fun loadData() {
+        if (!binding.surahSwipeRefresh.isRefreshing) binding.surahSwipeRefresh.isRefreshing = true
+        viewModel.loadData {
+            binding.surahSwipeRefresh.isRefreshing = false
+        }
     }
 }
 

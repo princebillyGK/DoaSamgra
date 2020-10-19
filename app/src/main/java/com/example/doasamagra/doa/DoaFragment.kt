@@ -1,18 +1,15 @@
 package com.example.doasamagra.doa
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.example.doasamagra.R
 import com.example.doasamagra.databinding.DoaFragmentBinding
-import com.example.doasamagra.databinding.HadisFragmentBinding
-import com.example.doasamagra.hadis.HadisItemAdapter
-import com.example.doasamagra.hadis.HadisViewModel
 
 class DoaFragment : Fragment() {
 
@@ -32,6 +29,9 @@ class DoaFragment : Fragment() {
         doaItemAdapter = DoaItemAdapter()
         doaItemAdapter.data = listOf<Doa>()
         binding.doaList.adapter = doaItemAdapter
+        binding.doaSwipeRefresh.setOnRefreshListener {
+            loadData()
+        }
         return binding.root
     }
 
@@ -43,6 +43,13 @@ class DoaFragment : Fragment() {
                 doaItemAdapter.data = it
             }
         })
-        viewModel.loadData()
+        loadData()
+    }
+
+    private fun loadData() {
+        if (!binding.doaSwipeRefresh.isRefreshing) binding.doaSwipeRefresh.isRefreshing = true
+        viewModel.loadData {
+            binding.doaSwipeRefresh.isRefreshing = false
+        }
     }
 }

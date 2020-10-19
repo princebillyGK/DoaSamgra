@@ -10,6 +10,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.doasamagra.databinding.ActivityMainBinding
 import com.example.doasamagra.util.OnSwipeTouchListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -22,10 +24,15 @@ class MainActivity : AppCompatActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        //AdMob Integration
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
+        //jcPlayer
         binding.jcPlayer.setOnTouchListener(object : OnSwipeTouchListener(this) {
             override fun onSwipeLeft() {
                 killJcPlayer()
             }
+
             override fun onSwipeRight() {
                 killJcPlayer()
             }

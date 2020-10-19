@@ -16,7 +16,7 @@ class SurahPlayerViewModel : ViewModel() {
     private val _jcAudioList = MutableLiveData<List<JcAudio>>()
     val jcAudioList: LiveData<List<JcAudio>> = _jcAudioList
 
-    fun loadData() {
+    fun loadData(cb: (() -> Unit)? = null) {
         surahCollection.orderBy("title").get()
             .addOnSuccessListener { documents ->
 //                Log.d("SurahViewModel", "Successfully get data")
@@ -25,8 +25,10 @@ class SurahPlayerViewModel : ViewModel() {
                 val list = _surahs.value
                 _jcAudioList.value =
                     list?.map { surah -> JcAudio.createFromURL(surah.title, surah.url) }
+                cb?.let {it()}
             }.addOnFailureListener { e ->
                 Log.d("SurahViewModel", "There is some problems loading the data")
+                cb?.let {it()}
             }
     }
 }
